@@ -45,6 +45,7 @@ class StatisticsService
             if (!$post instanceof SocialPostTo) {
                 continue;
             }
+
             $calculator->accumulateData($post);
         }
 

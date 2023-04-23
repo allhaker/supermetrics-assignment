@@ -26,7 +26,6 @@ class TotalPostsPerWeek extends AbstractCalculator
     protected function doAccumulate(SocialPostTo $postTo): void
     {
         $key = $postTo->getDate()->format('\W\e\e\k W, Y');
-
         $this->totals[$key] = ($this->totals[$key] ?? 0) + 1;
     }
 

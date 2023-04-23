@@ -62,19 +62,27 @@ class StatisticsController extends Controller
     public function indexAction(array $params)
     {
         try {
+            $time_format = 'g:i:s';
+            error_log('Starting statistics calculation ' . date($time_format));
+
             $startDate = $this->extractDate($params['start_date'] ?? null);
             $endDate   = $this->extractDate($params['end_date'] ?? null);
             $params    = ParamsBuilder::reportStatsParams($startDate, $endDate);
 
+
             $posts = $this->socialService->fetchPosts();
+            error_log('Fetched stats ' . date($time_format));
+
             $stats = $this->statsService->calculateStats($posts, $params);
+            error_log('Calculated results ' . date($time_format));
 
             $response = [
                 'stats' => $this->extractor->extract($stats, self::STAT_LABELS),
             ];
         } catch (\Throwable $throwable) {
-            http_response_code(500);
+            error_log($throwable);
 
+            http_response_code(500);
             $response = ['message' => 'An error occurred'];
         }
 
