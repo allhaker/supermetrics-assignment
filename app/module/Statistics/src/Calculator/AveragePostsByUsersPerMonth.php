@@ -18,7 +18,7 @@ class AveragePostsByUsersPerMonth extends AbstractCalculator
     private $totals = [];
 
     /**
-     * @inheritDoc
+     * @param SocialPostTo $postTo
      */
     protected function doAccumulate(SocialPostTo $postTo): void
     {
@@ -36,7 +36,7 @@ class AveragePostsByUsersPerMonth extends AbstractCalculator
     }
 
     /**
-     * @inheritDoc
+     * @return StatisticsTo
      */
     protected function doCalculate(): StatisticsTo
     {
