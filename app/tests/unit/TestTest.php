@@ -16,8 +16,6 @@ use Statistics\Calculator\AveragePostsByUsersPerMonth;
  */
 class AveragePostsByUsersPerMonthTest extends TestCase
 {
-    // we don't test this here
-    // I would have tested dated in the abstract calculator
     private $startDate;
     private $endDate;
     private $params;
