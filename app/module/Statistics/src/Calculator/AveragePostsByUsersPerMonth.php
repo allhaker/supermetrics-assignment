@@ -16,15 +16,12 @@ class AveragePostsByUsersPerMonth extends AbstractCalculator
      * @var array
      */
     private $totals = [];
-    private $postCount = 0;
 
     /**
      * @inheritDoc
      */
     protected function doAccumulate(SocialPostTo $postTo): void
     {
-        $this->postCount++;
-
         $key = $postTo->getDate()->format('F');
         $author_id = $postTo->getAuthorId();
 
@@ -43,7 +40,6 @@ class AveragePostsByUsersPerMonth extends AbstractCalculator
      */
     protected function doCalculate(): StatisticsTo
     {
-        error_log(strval($this->postCount));
         $stats = new StatisticsTo();
 
         foreach ($this->totals as $month => $month_posts_per_user) {

@@ -51,8 +51,8 @@ abstract class AbstractCalculator implements CalculatorInterface
     public function calculate(): StatisticsTo
     {
         return $this->doCalculate()
-                    ->setName($this->parameters->getStatName())
-                    ->setUnits(static::UNITS);
+            ->setName($this->parameters->getStatName())
+            ->setUnits(static::UNITS);
     }
 
     /**
@@ -62,13 +62,15 @@ abstract class AbstractCalculator implements CalculatorInterface
      */
     protected function checkPost(SocialPostTo $postTo): bool
     {
-        if (null !== $this->parameters->getStartDate()
+        if (
+            null !== $this->parameters->getStartDate()
             && $this->parameters->getStartDate() > $postTo->getDate()
         ) {
             return false;
         }
 
-        if (null !== $this->parameters->getEndDate()
+        if (
+            null !== $this->parameters->getEndDate()
             && $this->parameters->getEndDate() < $postTo->getDate()
         ) {
             return false;
