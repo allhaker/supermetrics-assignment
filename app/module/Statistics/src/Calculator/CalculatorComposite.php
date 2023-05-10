@@ -35,7 +35,11 @@ class CalculatorComposite implements CalculatorInterface
      */
     public function accumulateData(SocialPostTo $postTo): void
     {
+        $time_format = 'g:i:s';
+        error_log('Inside Accumulate Data ' . date($time_format));
+
         foreach ($this->children as $key => $child) {
+            error_log('Inside inner loop ' . date($time_format));
             $child->accumulateData($postTo);
         }
     }

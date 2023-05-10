@@ -39,16 +39,23 @@ class StatisticsService
      */
     public function calculateStats(Traversable $posts, array $params): StatisticsTo
     {
+
+        $time_format = 'g:i:s';
+
         $calculator = $this->factory->create($params);
+        error_log('Handlers created ' . date($time_format));
 
         foreach ($posts as $post) {
             if (!$post instanceof SocialPostTo) {
                 continue;
             }
 
+            error_log('Accumulating ' . date($time_format));
             $calculator->accumulateData($post);
         }
-
-        return $calculator->calculate();
+        error_log('About to do calculating ' . date($time_format));
+        $res = $calculator->calculate();
+        error_log('Calculated ' . date($time_format));
+        return $res;
     }
 }
